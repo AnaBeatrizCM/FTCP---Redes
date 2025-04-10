@@ -19,7 +19,7 @@ files = {
 
 def udp():
 	udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	udp_sock.bind(('0.0.0.0', int(UDP_PORT)))
+	udp_sock.bind(('127.0.0.1', int(UDP_PORT)))
 	print(f"UDP server listening on port {UDP_PORT}")
 
 	while True:
