@@ -16,7 +16,6 @@ files = {
 		'b.txt': os.path.join(FILE_B)
 	} 
 
-
 def udp():
 	udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	udp_sock.bind(('127.0.0.1', int(UDP_PORT)))
@@ -62,16 +61,45 @@ def verify(data: str):
 
 	return filename
 
+def tcp():
+    tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcp_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    tcp_sock.bind(('127.0.0.1', int(TCP_PORT)))
+    tcp_sock.listen(5)
+
+    print(f"TCP server escutando na porta {TCP_PORT}")
+
+    while True:
+        conn, addr = tcp_sock.accept()
+        client_thread = t.Thread(target = tcp_client, args = (conn, addr))
+        client_thread.daemon = True
+        client_thread.start()
+
+def tcp_client(conn, addr):
+    print(f"TCP Client conectado com {addr}")
+
+    with conn:
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                break
+            print(f"TCP recebido com {addr}: {data.decode('utf-8')}")
+            conn.sendall(data)
+
+    print(f"TCP Client desconectado com {addr}")
+
 
 if __name__ == '__main__':
-	udp_thread = t.Thread(target=udp)
-	udp_thread.daemon = True
-	udp_thread.start()
+    udp_thread = t.Thread(target=udp)
+    udp_thread.daemon = True
+    udp_thread.start()
 
-	try:
-		while True:
-			pass
-	except KeyboardInterrupt:
-		print("cabou")
+    tcp_thread = t.Thread(target=tcp)
+    tcp_thread.daemon = True
+    tcp_thread.start()
 
-
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        print("cabou")
