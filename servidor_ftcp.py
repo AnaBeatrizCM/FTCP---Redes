@@ -12,54 +12,54 @@ TCP_PORT = config['SERVER_CONFIG']['TCP_PORT']
 UDP_PORT = config['SERVER_CONFIG']['UDP_PORT']
 
 files = {
-		'a.txt': os.path.join(FILE_A),
-		'b.txt': os.path.join(FILE_B)
-	} 
+        'a.txt': os.path.join(FILE_A),
+        'b.txt': os.path.join(FILE_B)
+    }
 
 def udp():
-	udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	udp_sock.bind(('127.0.0.1', int(UDP_PORT)))
-	print(f"UDP server listening on port {UDP_PORT}")
+    udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    udp_sock.bind(('127.0.0.1', int(UDP_PORT)))
+    print(f"UDP server listening on port {UDP_PORT}")
 
-	while True:
-		data, addr = udp_sock.recvfrom(1024)
-		
-		if not data:
-			continue
-		print(f"UDP Received from {addr}: {data.decode('utf-8')}")
+    while True:
+        data, addr = udp_sock.recvfrom(1024)
 
-		data_decoded = data.decode('utf-8')
+        if not data:
+            continue
+        print(f"UDP Received from {addr}: {data.decode('utf-8')}")
 
-		try:
-			archive = verify(data_decoded)
-	
-			response = f"RESPONSE,TCP,{TCP_PORT},{archive}"
+        data_decoded = data.decode('utf-8')
 
-			udp_sock.sendto(response.encode('utf-8'), addr)
+        try:
+            archive = verify(data_decoded)
 
-		except Exception as e:
-			error_msg = str(e)
-			udp_sock.sendto(error_msg.encode('utf-8'), addr)
+            response = f"RESPONSE,TCP,{TCP_PORT},{archive}"
+
+            udp_sock.sendto(response.encode('utf-8'), addr)
+
+        except Exception as e:
+            error_msg = str(e)
+            udp_sock.sendto(error_msg.encode('utf-8'), addr)
 
 
 def verify(data: str):
-	
-	lista = data.split(',')
+    lista = data.split(',')
 
-	if len(lista) != 3:
-		raise Exception("ERROR,INVALID_FORMAT - Use: REQUEST,TCP,filename.txt")
+    if len(lista) != 3:
+        raise Exception("ERRO,FORMATO_INVÁLIDO - Use o formato: REQUEST,TCP,arquivo.txt")
 
-	if lista[0] != "REQUEST":
-		raise Exception("ERROR,INVALID_REQUEST_TYPE - First field must be 'REQUEST'")
+    if lista[0] != "REQUEST":
+        raise Exception("ERRO,TIPO_DE_REQUISIÇÃO_INVÁLIDO - O primeiro campo deve ser 'REQUEST'")
 
-	if lista[1] != "TCP":
-		raise Exception("ERROR,INVALID_PROTOCOL - Only TCP protocol is supported")
+    if lista[1] != "TCP":
+        raise Exception("ERRO,PROTOCOLO_INVÁLIDO - Apenas o protocolo TCP é suportado")
 
-	filename = lista[2].strip()
-	if filename not in ['a.txt','b.txt']:
-		raise Exception("ERROR,FILE_NOT_AVAILABLE - Available files: a.txt, b.txt")
+    filename = lista[2].strip()
+    if filename not in files:
+        raise Exception("ERRO,ARQUIVO_INDISPONÍVEL - Arquivos disponíveis: a.txt, b.txt")
 
-	return filename
+    return filename
+
 
 def tcp():
     tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -83,8 +83,18 @@ def tcp_client(conn, addr):
             data = conn.recv(1024)
             if not data:
                 break
-            print(f"TCP recebido com {addr}: {data.decode('utf-8')}")
-            conn.sendall(data)
+            decoded_data = data.decode('utf-8')
+            print(f"TCP recebido com {addr}: {decoded_data}")
+            arquivo = decoded_data.split(',')[1]
+            if arquivo in files:
+                with open(files[arquivo], mode='rb') as file:
+                    saida = file.read()
+            else:
+                 break
+
+            conn.sendall(saida)
+            res = conn.recv(1024).decode('utf-8')
+            print(f"TCP recebido com {addr}: {res}")
 
     print(f"TCP Client desconectado com {addr}")
 
@@ -102,4 +112,4 @@ if __name__ == '__main__':
         while True:
             pass
     except KeyboardInterrupt:
-        print("cabou")
+        print("Servidor Finalizado")
