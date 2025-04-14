@@ -1,6 +1,13 @@
 import socket
 from configparser import ConfigParser
+import sys
 
+
+if len(sys.argv) < 2:
+    print("Uso: python3 cliente_ftcp.py <nome_do_arquivo>")
+    sys.exit(1)
+
+arquive = sys.argv[1]
 
 config = ConfigParser()
 config.read('config.ini')
@@ -15,7 +22,6 @@ def udp():
     udp_sock.settimeout(5)
     print(f"UDP server listening on port {UDP_CLIENTE_PORT}")
 
-    arquive = input("Arquivo: ")
     data = "REQUEST,TCP," + arquive
     udp_sock.sendto(data.encode('utf-8'), ('127.0.0.1', int(UDP_SERVER_PORT)))
 
@@ -57,7 +63,7 @@ def tcp(tcp_port: int, filename):
         data = tcp_sock.recv(10240)
         print(f"Conteúdo recebido:\n{data.decode('utf-8')}")
 
-        ack = f"ftcp_ack,{len(data) * 8}"
+        ack = f"ftcp_ack,{len(data)}"
         tcp_sock.sendall(ack.encode('utf-8'))
         print("ACK enviado. Conexão encerrada.")
 
