@@ -17,27 +17,19 @@ O objetivo principal é desenvolver um cliente e um servidor que se comunicam at
 
 A entrega final do projeto consiste nos itens detalhados na tabela abaixo. 
 
-| Item # | Descrição                                      | Forma de Entrega                  |
-| :----- | :--------------------------------------------- | :-------------------------------- |
-| 1      | **Código Fonte** (Cliente e Servidor)          | Repositório Git (este)            |
-| 2      | **Arquivos de Teste** (`a.txt` e `b.txt`)      | Repositório Git (este)            |
-| 3      | **Arquivo de Configuração** (`config.ini`)     | Repositório Git (este)            |
-| 4      | **Arquivo de Captura de Tráfego** (`.pcapng`) | Repositório Git (este)            |
-| 5      | **Relatório de Análise** (PDF ou Markdown)   | Google Classroom (1 por equipe)   |
+| Item # | Descrição                                      | Forma de Entrega                        |
+| :----- | :--------------------------------------------- | :---------------------------------------|
+| 1      | **Código Fonte**                               | **[Cliente](./cliente_ftcp.py)**        |
+| 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)**      |
+| 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**            |
+| 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**        |
+| 5      | **Arquivo de Captura de Tráfego**              |                   ---                   |
+| 6      | **Relatório de Análise**                       |                   ---                   |
 
 
-## Documentação Importante
+## Como Executar
 
-Consulte os seguintes arquivos neste repositório para obter detalhes completos sobre cada parte do projeto:
-
-*   **[📄 Especificação do Protocolo FTCP](./protocolo.md):** Descreve em detalhes as etapas de negociação (UDP) e transferência (TCP), os formatos das mensagens e o fluxo de comunicação esperado entre cliente e servidor.
-*   **[🦈 Tutorial de Análise com Wireshark](./wireshark_tutorial.md):** Contém um guia passo a passo sobre como usar o Wireshark para analisar o arquivo de captura (`.pcap`), incluindo exemplos com DHCP/DNS e instruções específicas para analisar o tráfego do seu protocolo FTCP.
-*   **[📝 Instruções para o Relatório](./relatorio.md):** Apresenta a estrutura e o conteúdo esperado para o relatório final, focando na análise do protocolo e do tráfego de rede capturado.
-*   **[🐍 Exemplo de servidor/cliente (Python)](./echo_server.py):** Um código de exemplo em Python demonstrando um servidor e cliente "echo" que opera simultaneamente em TCP e UDP. 
-
-## Como Executar (Exemplo Básico)
-
-1.  **Configuração:** Certifique-se de que o arquivo `config.ini` está presente na mesma pasta dos scripts e configurado corretamente com as portas desejadas e os caminhos para os arquivos `a.txt` e `b.txt`.
+1.  **Configuração:** Como arquivo `config.ini` presente na mesma pasta dos scripts e configurado com as portas desejadas e os caminhos para os arquivos `a.txt` e `b.txt`.
 2.  **Iniciar o Servidor:**
     
     ```bash
