@@ -17,14 +17,14 @@ O objetivo principal é desenvolver um cliente e um servidor que se comunicam at
 
 A entrega final do projeto consiste nos itens detalhados na tabela abaixo. 
 
-| Item # | Descrição                                      | Forma de Entrega                        |
-| :----- | :--------------------------------------------- | :---------------------------------------|
-| 1      | **Código Fonte**                               | **[Cliente](./cliente_ftcp.py)**        |
-| 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)**      |
-| 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**            |
-| 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**        |
-| 5      | **Arquivo de Captura de Tráfego**              |                   ---                   |
-| 6      | **Relatório de Análise**                       |                   ---                   |
+| Item # | Descrição                                      | Forma de Entrega                   |
+| :----- | :--------------------------------------------- |:-----------------------------------|
+| 1      | **Código Fonte**                               | **[Cliente](./cliente_ftcp.py)**   |
+| 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)** |
+| 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**       |
+| 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**   |
+| 5      | **Arquivo de Captura de Tráfego**              | **[Capturas](./img)**              |
+| 6      | **Relatório de Análise**                       |                                    |
 
 
 ## Como Executar
