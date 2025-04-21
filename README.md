@@ -23,7 +23,7 @@ A entrega final do projeto consiste nos itens detalhados na tabela abaixo.
 | 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)** |
 | 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**       |
 | 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**   |
-| 5      | **Arquivo de Captura de Tráfego**              | **[Capturas](./img)**              |
+| 5      | **Arquivo de Captura de Tráfego**              | **[Trafego](./trafego)**           |
 | 6      | **Relatório de Análise**                       |                                    |
 
 
