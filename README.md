@@ -17,14 +17,14 @@ O objetivo principal é desenvolver um cliente e um servidor que se comunicam at
 
 A entrega final do projeto consiste nos itens detalhados na tabela abaixo. 
 
-| Item # | Descrição                                      | Forma de Entrega                   |
-| :----- | :--------------------------------------------- |:-----------------------------------|
-| 1      | **Código Fonte**                               | **[Cliente](./cliente_ftcp.py)**   |
-| 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)** |
-| 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**       |
-| 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**   |
-| 5      | **Arquivo de Captura de Tráfego**              | **[Trafego](./trafego)**           |
-| 6      | **Relatório de Análise**                       |                                    |
+| Item # | Descrição                                      | Forma de Entrega                                                                                                                     |
+| :----- | :--------------------------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------|
+| 1      | **Código Fonte**                               | **[Cliente](./cliente_ftcp.py)**                                                                                                     |
+| 2      | **Código Fonte**                               | **[Servidor](./servidor_ftcp.py)**                                                                                                   |
+| 3      | **Arquivos de Teste**                          | **[Arquivos .txt](./files)**                                                                                                         |
+| 4      | **Arquivo de Configuração**                    | **[Configuração](./config.ini)**                                                                                                     |
+| 5      | **Arquivo de Captura de Tráfego**              | **[Trafego](./trafego)**                                                                                                             |
+| 6      | **Relatório de Análise**                       | **[Relatorio](https://docs.google.com/document/d/1MiDscv-REeZuapkRUEf21DZO_pAxs5ACqzQd-GlCgWU/edit?tab=t.0#heading=h.5qrndgaj6dwq)** |
 
 
 ## Como Executar
